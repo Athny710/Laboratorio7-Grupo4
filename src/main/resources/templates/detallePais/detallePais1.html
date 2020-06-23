@@ -40,7 +40,7 @@
             $.ajax({
                 method: "GET",
                 dataType: "json",
-                url: "https://api.covid19api.com/total/dayone/country/peru/status/confirmed",
+                url: "https://api.covid19api.com/total/dayone/country/" + name + "/status/confirmed",
             }).done(function (data) {
                 //var casos = data.Cases;
                 //var fechaR = data.Date;
