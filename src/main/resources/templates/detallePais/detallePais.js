@@ -8,4 +8,25 @@ $(document).ready(function () {
     $("#redirect-grafico").attr("href", '');
 
     // TODO: Consultas a la web service
+    $.ajax({
+        method: "GET",
+        dataType: "json",
+        url: "https://restcountries.eu/rest/v2/alpha/PE",
+    }).done(function (data) {
+        var nombrepais = data.name;
+        var poblacion = data.population;
+        var subreg = data.subregion;
+        var capital = data.capital;
+
+        $("#titulo").append(nombrepais)
+        $("#1").text(capital)
+        $("#2").text(poblacion)
+        $("#3").text(subreg)
+
+    }).fail(function (err) {
+        var jsonData = err.responseJSON;
+        console.log(jsonData.msg);
+        alert(jsonData.msg);
+    });
+    return false;
 });
