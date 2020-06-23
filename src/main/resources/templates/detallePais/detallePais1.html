@@ -9,7 +9,10 @@
     <script>
         $(document).ready(function () {
             // Metodo de obtención de parámetros
-
+                const urlParams = new URLSearchParams(window.location.search);
+                const name = urlParams.get('name');
+                const slug = urlParams.get('slug');
+                const country = urlParams.get('countryCode');
 
             // Metodo para cambiar el href, cambiar de acuerdo a la conveniencia
 
@@ -18,13 +21,9 @@
             $.ajax({
                 method: "GET",
                 dataType: "json",
-                url: "https://restcountries.eu/rest/v2/alpha/PE",
+                url: "https://restcountries.eu/rest/v2/alpha/" + country,
             }).done(function (data) {
-                //var nombrepais = data.name;
-                const urlParams = new URLSearchParams(window.location.search);
-                const name = urlParams.get('name');
-                const slug = urlParams.get('slug');
-                const country = urlParams.get('countryCode');
+
                 var poblacion = data.population;
                 var subreg = data.subregion;
                 var capital = data.capital;
@@ -32,8 +31,11 @@
                 $("#1").text(capital);
                 $("#2").text(poblacion);
                 $("#3").text(subreg);
-                const url = './grafico/graficoEvolutivo.html?name='+ name + '&slug=' + slug + '&countryCode=' + country;
+                const url = '/grafico?name='+ name + '&slug=' + slug + '&countryCode=' + country;
                 $("#redirect-grafico").attr("href", url);
+
+                const urlimg = "https://www.countryflags.io/" + country + "/shiny/64.png";
+                $("#banderita").attr("src", urlimg);
             });
             $.ajax({
                 method: "GET",
@@ -85,10 +87,10 @@
     <div class="row div-titulo">
         <div><h2 class="h2-titulo" id="titulo">Resumen del país</h2></div>
         <div><h2 id="nompa"></h2></div>
-        <div class="div-bandera" id="bandera-div"><img src="https://www.countryflags.io/PE/shiny/64.png"></div>
+        <div class="div-bandera" id="bandera-div"><img id="banderita" src="https://www.countryflags.io/PE/shiny/64.png"></div>
     </div>
     <hr/>
-    <a class="btn btn-primary" role="button" href="/lab7">Regresar al Resumen</a>
+    <a class="btn btn-primary" role="button" href="/">Regresar al Resumen</a>
     <hr/>
     <div>
         <div>
