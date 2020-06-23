@@ -30,10 +30,10 @@
                 $("#1").text(capital);
                 $("#2").text(poblacion);
                 $("#3").text(subreg);
-                $("#redirect-grafico").attr("href",'/grafico/graficoEvolutivo.html\' + \'?name=\' + \'nombrepais\' + \'&slug=\' + nombrepais + \'&countryCode=\' + countrycode');
-                //var contentHtml = "";
-                //contentHtml += "<td>" +"<a  class='btn btn-primary' href='/detallePais/detallePais.html?name=" + empleado.Country+"&slug="+empleado.Slug+"&countryCode="+empleado.CountryCode +" '>Ver Detalles </a>"  + "</td>";
-                //$("#paises tbody").html(contentHtml);
+                //$("#redirect-grafico").attr("href",'/grafico/graficoEvolutivo.html\' + \'?name=\' + \'nombrepais\' + \'&slug=\' + nombrepais + \'&countryCode=\' + countrycode');
+                var contentHtml = "";
+                contentHtml += "<td>" +"<a  class='btn btn-primary' href='/grafico/graficoEvolutivo.html?name=" + empleado.Country + "&slug="+empleado.Slug+"&countryCode="+empleado.CountryCode +" '>Ver Detalles </a>"  + "</td>";
+                $("#asd").html(contentHtml);
             });
             $.ajax({
                 method: "GET",
@@ -125,6 +125,7 @@
 
     <table id="casos-pais" class="table">
         <thead>
+        <tr id="asd"></tr>
         <tr>
             <th>Total casos confirmados</th>
             <th>Fecha</th>
