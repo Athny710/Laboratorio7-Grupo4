@@ -1,4 +1,4 @@
-<html>
+<html >
 
 <head>
     <title>TODO supply a title</title>
@@ -6,9 +6,79 @@
     <link rel="shortcut icon" href="#"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="/index.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="./index.js"></script>
+    <script>
+        $(document).ready(function () {
+            var fecha = formatDate();
+            $("#titulo-resumen-global").html("Resumen Global - "+ fecha);
+            $.ajax({
+                method: "GET",
+                url: "https://api.covid19api.com/summary"
+            }).done(function (data) {
+                console.log(data.Global.NewConfirmed);
+                $("#newConfirmed").html(data.Global.NewConfirmed);
+                $("#newDeaths").html(data.Global.TotalConfirmed);
+                $("#newRecovered").html(data.Global.NewDeaths);
+                $("#totalConfirmed").html(data.Global.TotalDeaths);
+                $("#totalDeaths").html(data.Global.NewRecovered);
+                $("#totalRecovered").html(data.Global.TotalRecovered);
+                var lista = data.Countries;
+                var lista2 = lista.sort(compare);
+
+                var contentHtml = "";
+                $.each(lista2, function (i, empleado) {
+                    contentHtml += "<tr>";
+                    contentHtml += "<td>" + (i + 1) + "</td>";
+                    contentHtml += "<td>" + empleado.Country + "</td>";
+                    contentHtml += "<td>" + empleado.TotalConfirmed + "</td>";
+                    contentHtml += "<td>" + empleado.TotalDeaths + "</td>";
+                    contentHtml += "<td>" + empleado.TotalRecovered + "</td>";
+                    contentHtml += "<td>" + empleado.NewConfirmed + "</td>";
+                    contentHtml += "<td>" + empleado.NewDeaths + "</td>";
+                    contentHtml += "<td>" + empleado.NewRecovered + "</td>";
+                    contentHtml += "<td>" +"<a  class='btn btn-primary' href='/detallePais/detallePais.html?name=" + empleado.Country+"&slug="+empleado.Slug+"&countryCode="+empleado.CountryCode +" '>Ver Detalles </a>"  + "</td>";
+                    contentHtml += "</tr>";
+                });
+                $("#paises tbody").html(contentHtml);
+
+            }).fail(function (err) {
+                var jsonData1 = err.responseJSON;
+                console.log(jsonData1.msg);
+                alert(jsonData1.msg);
+            });
+        });
+
+        // Función para hacer el sort de un array
+        function compare(a, b) {
+            const bandA = a.TotalConfirmed;
+            const bandB = b.TotalConfirmed;
+            let comparison = 0;
+            if (bandA > bandB) {
+                comparison = 1;
+            } else if (bandA < bandB) {
+                comparison = -1;
+            }
+            return comparison;
+        }
+
+
+        // Función para devolver un formato de fecha
+        function formatDate(date) {
+            var d = new Date(),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+            var fechaActual= year+"/" + month+"/"  +day;
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+            // TODO
+            return fechaActual;
+        }
+
+    </script>
 </head>
 
 <body>
@@ -55,7 +125,7 @@
     <hr/>
 
     <h3>Lista de países </h3>
-    <table class="table">
+    <table class="table" id="paises">
         <thead>
         <tr>
             <th>#</th>

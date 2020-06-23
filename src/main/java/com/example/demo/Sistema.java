@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class Sistema {
+    @GetMapping(value = {"","/"})
+    public String index(){
+        return  "index";
+    }
     @GetMapping("detalle")
     public String detalle(){
         return  "detallePais/detallePais";
