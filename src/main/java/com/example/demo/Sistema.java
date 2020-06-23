@@ -20,8 +20,7 @@ public class Sistema {
     }
 
     @GetMapping("grafico")
-    public String grafico(@RequestParam("url") String url, Model modal){
-        modal.addAttribute("url", url);
+    public String grafico(){
         return "grafico/graficoEvolutivo";
     }
 }

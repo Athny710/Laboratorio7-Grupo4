@@ -12,12 +12,10 @@
     <script>
         $(document).ready(function () {
 
-            // TODO
+            const urlParams=new URLSearchParams(window.location.search);
+            var url =urlParams.get('url');
 
 
-            // TODO adecuar el url
-
-            var url = $("#url").val();
 
 
             // set the dimensions and margins of the graph
@@ -108,12 +106,11 @@
         <div class="div-bandera" id="bandera-div"></div>
     </div>
     <hr/>
-    <a class="btn btn-primary" role="button">Regresar al Resumen General</a>
+    <a class="btn btn-primary" role="button" href="./index.html">Regresar al Resumen General</a>
     <a id="redirect-detalle" class="btn btn-primary" href="./detallePais/detallePais.html" role="button">Regresar al
         Detalle</a>
     <hr/>
     <h4>Total de casos desde el día uno</h4>
-    <input type="hidden" th:value="${url}" id="url">
     <div class="div-grafico" id="div-grafico">
 
     </div>
