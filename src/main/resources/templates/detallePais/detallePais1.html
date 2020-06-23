@@ -11,8 +11,8 @@
             // Metodo de obtención de parámetros
             const urlParams = new URLSearchParams(window.location.search);
             const name = urlParams.get('name');
-            const slug = urlParams.get('name');
-            const country = urlParams.get('name');
+            const slug = urlParams.get('slug');
+            const country = urlParams.get('countryCode');
 
             // Metodo para cambiar el href, cambiar de acuerdo a la conveniencia
 
@@ -33,7 +33,7 @@
                 $("#2").text(poblacion);
                 $("#3").text(subreg);
                 //$("#redirect-grafico").attr("href",'/grafico/graficoEvolutivo.html\' + \'?name=\' + \'nombrepais\' + \'&slug=\' + nombrepais + \'&countryCode=\' + countrycode');
-                var url = '/grafico/graficoEvolutivo.html?name=' + name + '&slug=' + slug + '&countryCode=' + countryCode;
+                var url = '/grafico/graficoEvolutivo.html?name=' + name + '&slug=' + slug + '&countryCode=' + country;
                 $("#redirect-grafico").attr("href", url);
             });
             $.ajax({
