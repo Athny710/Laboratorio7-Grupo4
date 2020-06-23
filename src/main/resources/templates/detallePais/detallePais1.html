@@ -9,11 +9,13 @@
     <script>
         $(document).ready(function () {
             // Metodo de obtención de parámetros
-            //const urlParams = new URLSearchParams(window.location.search);
-            //const name = urlParams.get('name');
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            const slug = urlParams.get('name');
+            const country = urlParams.get('name');
 
             // Metodo para cambiar el href, cambiar de acuerdo a la conveniencia
-            //$("#redirect-grafico").attr("href", '');
+
 
             // Consultas a la web service
             $.ajax({
@@ -21,19 +23,18 @@
                 dataType: "json",
                 url: "https://restcountries.eu/rest/v2/alpha/PE",
             }).done(function (data) {
-                var nombrepais = data.name;
+                //var nombrepais = data.name;
                 var poblacion = data.population;
                 var subreg = data.subregion;
                 var capital = data.capital;
-                var countrycode = data.alpha2Code;
-                $("#nompa").text(nombrepais);
+                var countryCode = data.alpha2Code;
+                $("#nompa").text(name);
                 $("#1").text(capital);
                 $("#2").text(poblacion);
                 $("#3").text(subreg);
                 //$("#redirect-grafico").attr("href",'/grafico/graficoEvolutivo.html\' + \'?name=\' + \'nombrepais\' + \'&slug=\' + nombrepais + \'&countryCode=\' + countrycode');
-                var contentHtml = "";
-                contentHtml += "<td>" +"<a  class='btn btn-primary' href='/grafico/graficoEvolutivo.html?name=" + empleado.Country + "&slug="+empleado.Slug+"&countryCode="+empleado.CountryCode +" '>Ver Detalles </a>"  + "</td>";
-                $("#asd").html(contentHtml);
+                var url = '/grafico/graficoEvolutivo.html?name=' + name + '&slug=' + slug + '&countryCode=' + countryCode;
+                $("#redirect-grafico").attr("href", url);
             });
             $.ajax({
                 method: "GET",
