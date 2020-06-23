@@ -1,4 +1,4 @@
-<html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>TODO supply a title</title>
@@ -37,7 +37,7 @@
                     contentHtml += "<td>" + empleado.NewConfirmed + "</td>";
                     contentHtml += "<td>" + empleado.NewDeaths + "</td>";
                     contentHtml += "<td>" + empleado.NewRecovered + "</td>";
-                    contentHtml += "<td>" +"<a  class='btn btn-primary' href='/detallePais/detallePais.html?name=" + empleado.Country+"&slug="+empleado.Slug+"&countryCode="+empleado.CountryCode +" '>Ver Detalles </a>"  + "</td>";
+                    contentHtml += "<td>" +"<a  class='btn btn-primary' href='./detallePais/detallePais1.html?name=" + empleado.Country+"&slug="+empleado.Slug+"&countryCode="+empleado.CountryCode +" '>Ver Detalles </a>"  + "</td>";
                     contentHtml += "</tr>";
                 });
                 $("#paises tbody").html(contentHtml);
