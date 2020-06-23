@@ -25,10 +25,15 @@
                 var poblacion = data.population;
                 var subreg = data.subregion;
                 var capital = data.capital;
+                var countrycode = data.alpha2Code;
                 $("#nompa").text(nombrepais);
                 $("#1").text(capital);
                 $("#2").text(poblacion);
                 $("#3").text(subreg);
+                $("#redirect-grafico").attr("href",'/grafico/graficoEvolutivo.html\' + \'?name=\' + \'nombrepais\' + \'&slug=\' + nombrepais + \'&countryCode=\' + countrycode');
+                //var contentHtml = "";
+                //contentHtml += "<td>" +"<a  class='btn btn-primary' href='/detallePais/detallePais.html?name=" + empleado.Country+"&slug="+empleado.Slug+"&countryCode="+empleado.CountryCode +" '>Ver Detalles </a>"  + "</td>";
+                //$("#paises tbody").html(contentHtml);
             });
             $.ajax({
                 method: "GET",
@@ -85,7 +90,6 @@
     <hr/>
     <a class="btn btn-primary" role="button" href="/lab7">Regresar al Resumen</a>
     <hr/>
-
     <div>
         <div>
             <!-- <h4 id="titulo-resumen-global">Características Socieconómicas </h4> -->
@@ -115,8 +119,8 @@
     </div>
     <hr/>
     <h4>Total de casos desde el día uno</h4>
-    <!-- Este <a> es solo un ejemplo -->
-    <a id="redirect-grafico" class="btn btn-primary" href="../grafico/graficoEvolutivo.html" role="button">Ver Gráfico</a>
+    <!-- Este <a> es solo un ejemplo -->'/sede/borrarTienda' + '?id=' + ${tienda.idtienda}
+    <a id="redirect-grafico" class="btn btn-primary" href="'/grafico/graficoEvolutivo.html' + '?name=' + Peru + '&slug=' + peru + '&countryCode=' + PE" role="button">Ver Gráfico</a>
     <hr/>
 
     <table id="casos-pais" class="table">
