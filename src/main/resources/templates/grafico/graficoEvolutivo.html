@@ -1,4 +1,4 @@
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>TODO supply a title</title>
@@ -25,7 +25,9 @@
         Detalle</a>
     <hr/>
     <h4>Total de casos desde el día uno</h4>
+    <input type="hidden" th:value="${url}">
     <div class="div-grafico" id="div-grafico">
+
     </div>
 </body>
 

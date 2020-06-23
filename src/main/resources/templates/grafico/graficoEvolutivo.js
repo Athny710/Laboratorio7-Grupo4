@@ -4,7 +4,8 @@ $(document).ready(function () {
 
 
     // TODO adecuar el url
-    var url = "";
+
+    var url = $("#url").val();
 
 
     // set the dimensions and margins of the graph
@@ -14,7 +15,7 @@ $(document).ready(function () {
 
     // parse the date / time
     //TODO Revisar este Formato
-    var parseTime = d3.timeParse("%d-%m-%Y");
+    var parseTime = d3.timeParse("%d-%m-%y");
     // var parseTime = d3.timeParse("%d-%b-%y");
 
     // set the ranges
@@ -77,5 +78,10 @@ $(document).ready(function () {
 });
 
 function formatDate(date) {
-    // TODO adecuar la función de formateo de fecha
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+    var formato = day + "-" + month + "-" + year;
+    return formato;
 }
