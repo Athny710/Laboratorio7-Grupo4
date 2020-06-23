@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     // TODO adecuar el url
 
-    var url = "https://api.covid19api.com/total/dayone/country/peru/status/confirmed";
+    var url = $("#url").val();
 
 
     // set the dimensions and margins of the graph

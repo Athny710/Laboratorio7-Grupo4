@@ -17,7 +17,7 @@
 
             // TODO adecuar el url
 
-            var url = "https://api.covid19api.com/total/dayone/country/peru/status/confirmed";
+            var url = $("#url").val();
 
 
             // set the dimensions and margins of the graph
@@ -113,7 +113,7 @@
         Detalle</a>
     <hr/>
     <h4>Total de casos desde el día uno</h4>
-
+    <input type="hidden" th:value="${url}" id="url">
     <div class="div-grafico" id="div-grafico">
 
     </div>
