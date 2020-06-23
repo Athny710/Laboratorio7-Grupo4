@@ -2,7 +2,6 @@ package com.example.demo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class Sistema {
@@ -12,7 +11,7 @@ public class Sistema {
     }
     @GetMapping("detalle")
     public String detalle(){
-        return  "detallePais/detallePais";
+        return "detallePais/detallePais1";
     }
     @GetMapping("grafico")
     public String grafico(){

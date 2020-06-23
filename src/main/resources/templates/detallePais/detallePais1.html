@@ -1,0 +1,136 @@
+<html>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Metodo de obtención de parámetros
+            //const urlParams = new URLSearchParams(window.location.search);
+            //const name = urlParams.get('name');
+
+            // Metodo para cambiar el href, cambiar de acuerdo a la conveniencia
+            //$("#redirect-grafico").attr("href", '');
+
+            // Consultas a la web service
+            $.ajax({
+                method: "GET",
+                dataType: "json",
+                url: "https://restcountries.eu/rest/v2/alpha/PE",
+            }).done(function (data) {
+                var nombrepais = data.name;
+                var poblacion = data.population;
+                var subreg = data.subregion;
+                var capital = data.capital;
+                $("#nompa").text(nombrepais);
+                $("#1").text(capital);
+                $("#2").text(poblacion);
+                $("#3").text(subreg);
+            });
+            $.ajax({
+                method: "GET",
+                dataType: "json",
+                url: "https://api.covid19api.com/total/dayone/country/peru/status/confirmed",
+            }).done(function (data) {
+                //var casos = data.Cases;
+                //var fechaR = data.Date;
+                var todo = data;
+                var contentHtml = "";
+                $.each(todo, function (i, ite) {
+                    contentHtml += "<tr>";
+                    contentHtml += "<td>" + ite.Cases + "</td>";
+                    contentHtml += "<td>" + ite.Date + "</td>";
+                    contentHtml += "</tr>";
+                });
+                $("#bla").html(contentHtml);
+            });
+            return false;
+        });
+    </script>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        .div-body {
+            margin: 10px 0px 0px 10px;
+        }
+
+        .h2-titulo {
+            display: inline-block;
+            margin: 0px 20px 0px 0px !important;
+            vertical-align: middle;
+            color: #353541;
+            font-size: 35px;
+        }
+
+        .div-bandera {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- <div class="div-body"> -->
+<div class="container mx-auto" style="width: 1200px; margin-top: 20px;">
+    <div class="row div-titulo">
+        <div><h2 class="h2-titulo" id="titulo">Resumen del país</h2></div>
+        <div><h2 id="nompa"></h2></div>
+        <div class="div-bandera" id="bandera-div"><img src="https://www.countryflags.io/PE/shiny/64.png"></div>
+    </div>
+    <hr/>
+    <a class="btn btn-primary" role="button" href="/lab7">Regresar al Resumen</a>
+    <hr/>
+
+    <div>
+        <div>
+            <!-- <h4 id="titulo-resumen-global">Características Socieconómicas </h4> -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Caracteristica</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Capital</th>
+                    <th id = "1"></th>
+                </tr>
+                <tr>
+                    <th>Poblacion</th>
+                    <th id="2"></th>
+                </tr>
+                <tr>
+                    <th>Subregion</th>
+                    <th id="3"></th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr/>
+    <h4>Total de casos desde el día uno</h4>
+    <!-- Este <a> es solo un ejemplo -->
+    <a id="redirect-grafico" class="btn btn-primary" href="../grafico/graficoEvolutivo.html" role="button">Ver Gráfico</a>
+    <hr/>
+
+    <table id="casos-pais" class="table">
+        <thead>
+        <tr>
+            <th>Total casos confirmados</th>
+            <th>Fecha</th>
+        </tr>
+        </thead>
+        <tbody id="bla">
+
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
